@@ -1,0 +1,202 @@
+#iseseisevtöö5
+#joosep alasoo
+#16.01.24
+import random
+
+"""
+9. Emaili kontroll
+	kasutaja lisab emaili kujul enimi.pnimi@server.com - 1p
+	programm kontrollib kas email on sisestatud Ćµigesti - vĆ¤hemalt @-mĆ¤rgi kontroll - 1p
+	programm tĆ¼keldab selle ja vĆ¤ljastab lause: ā€Tere enimi, sinu email on server serveris ja domeeniks on sul comā€™ - 1p
+	kasutajalt kĆ¼situd kĆ¼simused on selgelt Ć¼heselt mĆµistetavad - 1p
+	kood kommenteeritud - 1p
+"""
+
+def email():
+    #küsib kasutajalt emaili
+    email=input("sisesta email: ")
+    #kontrollib kas email on sisestatud õigesti
+    if "@" in email:
+        #tükeldab emaili
+        email=email.split("@")
+        #väljastab lause
+        print(f"tere {email[0]}, sinu email on serveris {email[1]} ja domeeniks on sul {email[2]}")
+    else:
+        #kui email on vale siis väljastab veateate
+        print("vale email")
+#käivitab funktsiooni
+email()
+
+
+input()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+7. Eurokalkulaator - koosta programm, mis kalkuleerib valuuta vastavalt kasutaja soovile EUR->EEK vĆµi EEK->EUR.
+	kuvatakse korrektne arusaadav kĆ¼simus ja vastus - 1p
+	kuvatakse veateade, kui kasutaja tegi valiku valesti - 1p
+	kĆ¼sitakse valuuta kogust ja tehakse arvutused - 2p
+	kood kommenteeritud - 1p
+"""
+def eurokalkulaator():
+    #alustab loopi
+    while True:
+        #väjastab valikud kasutajale
+        print("1. EUR->EEK")
+        print("2. EEK->EUR")
+        print("3. EXIT")
+        #küsib kasutaja valikut
+        valik=int(input("vali: "))
+        #kui kasutaja küsib 2 valikut siis:
+        if valik==1:
+            #küsib kasutajalt summat mida vahetada
+            summa=int(input("summa: "))
+            #kuvab vahetatud summa kroonides
+            print(f"{summa} eurot on {summa*15.6466} krooni")
+            #kui kasutaja küsib 2 valikut siis:
+        elif valik==2:
+            #küsib kasutajalt summat mida vahetada
+            summa=int(input("summa: "))
+            #kuvab vahetatud summa eurodes
+            print(f"{summa} krooni on {summa/15.6466} eurot")
+            #kui kasutaja küsib 3 valikut siis:
+        elif valik==3:
+            #lõpetab loopi
+            break
+            #kui kasutaja küsib muud valikut siis:
+        else:
+            #kuvatakse veateade
+            print("vale valik")
+#käivitab funktsiooni
+eurokalkulaator()
+
+
+input()
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+5. Shopping List
+Create a program that will keep track of items for a shopping list. The program should keep asking for new items until nothing is entered (no input followed by enter/return key).
+ The program should then display the full shopping list.
+"""
+def shopping():
+    shoppinglist=[]
+    while True:
+        item=input("lisa toode: ")
+        if item=="":
+            break
+        else:
+            shoppinglist.append(item)
+    print(shoppinglist)
+shopping()
+
+
+input()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+3. Positiivsed ja negatiivsed
+	tee kaks loendit positiivsete ja negatiivsete arvude hoidmiseks 1p
+	kasutaja sisestab 5 arvu ja programm tuvastab, kumba loendisse selle lisab 2p
+	nulli lisamisel ei tehta midagi 1p
+	vĆ¤ljasta mĆµlemad loendit 1p
+"""
+def posneg():
+    pos=[6,5,3,4,8,10,3]
+    neg=[-7,-5,-3,-4,-8,-10,-3]
+    korrad=0
+    while korrad<5:
+        arv=int(input("sisesta arv: "))
+        if arv==0:
+            print("ära sisesta nulli")
+        else:
+            if arv>0:
+                pos.append(arv)
+            elif arv<0:
+                neg.append(arv)
+            korrad+=1
+    print(pos)
+    print(neg)
+posneg()
+
+
+
+
+
+input()
+
+
+
+
+
+
+
+
+"""1. Korrutamise kontrollimine
+	programm esitab korrutustehte 1p
+	ootab kasutajalt vastuse sisestamist 1p
+	kontrollib vastuse Ćµigsust 1p
+	vĆ¤ljastab, kas vastus oli Ćµige vĆµi vĆ¤Ć¤r. 1p
+	kokku antakse lahendamiseks 10 Ć¼lesannet. 1p
+    """
+arv1=random.randint(1,100)
+arv2=random.randint(1,100)
+
+def korutamine(arv1,arv2):
+    print(f"{arv1} * {arv2}")
+    vastus=int(input("vastus: "))
+    if vastus==arv1*arv2:
+        print("õige")
+    else:
+        print("vale")
+for i in range(10):
+    korutamine(arv1,arv2)
+    arv1=random.randint(1,100)
+    arv2=random.randint(1,100)
+korutamine(arv1,arv2)
