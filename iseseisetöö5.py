@@ -4,6 +4,252 @@
 import random
 
 """
+17. Email
+	Kasutaja lisab emaili kujul enimi.pnimi@server.com
+	Programm kontrollib kas email on sisestatud Ćµigesti
+	Programm tĆ¼keldab selle ja vĆ¤ljastab lause: Tere enimi, sinu email on server serveris ja domeeniks on sul com
+"""
+
+def email_kontroll():
+    email=input("sisesta email: ")
+    if "@" in email:
+        email=email.split("@")
+        first_name=email[0].split(".")[0]
+        domain=email[1].split(".")
+        print(f"tere {first_name}, sinu email on serveris {domain[0]} ja domeeniks on sul {domain[1]}")
+    else:
+        print("vale email")
+email_kontroll() 
+
+input()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+Temperatuurid - Programm peab tĆ¶Ć¶tlema Ć¼he aasta kĆµigi pĆ¤evade temperatuure. 
+Kirjutada programm, mis leiab kuude kaupa, mitmendal kuupĆ¤eval oli kĆµige soojem. 
+VĆ¤ljasta kuupĆ¤ev ja vastav temperatuur. (Kui sama temperatuuriga oli mitu pĆ¤eva, vĆ¤ljasta vĆ¤hemalt Ć¼ks)
+"""
+def Temperatuurid():
+    kuud = []
+    kuud.append([]) #jaanuar
+    kuud.append([]) #veebruar
+    kuud.append([]) #märts
+    kuud.append([]) #aprill
+    kuud.append([]) #mai
+    kuud.append([]) #juuni
+    kuud.append([]) #juuli
+    kuud.append([]) #august
+    kuud.append([]) #september
+    kuud.append([]) #oktoober
+    kuud.append([]) #november
+    kuud.append([]) #detsember
+    kuud.append([]) #aasta
+    for i in range(1, 13):
+        kuud[12].append(0)
+    for i in range(1, 32):
+        kuud[0].append(random.randint(-25, 25))
+        kuud[1].append(random.randint(-25, 25))
+        kuud[2].append(random.randint(-25, 25))
+        kuud[3].append(random.randint(-25, 25))
+        kuud[4].append(random.randint(-25, 25))
+        kuud[5].append(random.randint(-25, 25))
+        kuud[6].append(random.randint(-25, 25))
+        kuud[7].append(random.randint(-25, 25))
+        kuud[8].append(random.randint(-25, 25))
+        kuud[9].append(random.randint(-25, 25))
+        kuud[10].append(random.randint(-25, 25))
+        kuud[11].append(random.randint(-25, 25))
+    for i in range(0, 12):
+        kuud[12][i] = sum(kuud[i]) / len(kuud[i])
+    
+    # väljastab temperatuurid
+    months = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"]
+    for i in range(0, 12):
+        print(months[i], end=" ")
+        for temp in kuud[i]:
+            print(temp, end=" ")
+        print()
+    
+    # leiab kõige soojema päeva
+    for i in range(0, 12):
+        max_temp = max(kuud[i])
+        max_temp_index = kuud[i].index(max_temp) + 1
+        print(months[i], max_temp_index, max_temp)
+Temperatuurid()
+
+
+input()
+
+
+#nais cood mees ja kui pärast pushin ikka saab mario pahaseks
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+13. Koosta programm, mis kontrollib, kas kasutaja poolt sisestatud arv on paaris vĆµi paaritu
+	kuvatakse korrektne arusaadav kĆ¼simus ja  vastus - 1p
+	eelnev kontroll, kas kasutaja ei lisanud arvu vĆµi pani nulli - 2p
+	kood mis teavitab paaris vĆµi paaritust arvust - 2p
+	kuvatakse programmi pealkiri - 1p
+"""
+
+def paaritu_paaris():
+    #küsib inimeselt arvu
+    arv=int(input("sisesta arv: "))
+    #kontrollib kas arv on paaris või paaritu
+    if arv==0:
+        print("null")
+    elif arv%2==0:
+        print("paaris")
+    else:
+        print("paaritu")
+paaritu_paaris()
+
+
+
+
+
+
+
+input()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+11. Salakeel
+sinu programm küsib kasutajalt, kas ta soovib salakeelt luua või tõlkida - 1p
+kasutaja sisestab tavalise sõna, mis muudetakse salakeeleks - 1p
+kasutaja sisestab salakeeles sõna, mis teisendatakse jälle normaalseks - 1p
+kood kommenteeritud - 1p
+"""
+
+def salakeel():
+    valik = input("kas soovid luua või tõlkida? ")
+    if valik == "luua":
+        sona = input("sisesta sõna: ")
+        sona = list(sona)
+        salasona = []
+        for i in sona:
+            if i not in "aeiou":
+                salasona.append(i + "o" + i)
+            else:
+                salasona.append(i)
+        salasona = "".join(salasona)
+        print(salasona)
+    elif valik == "tõlkida":
+        sona = input("sisesta sõna: ")
+        sona = list(sona)
+        salasona = []
+        i = len(sona) - 1
+        while i >= 0:
+            if sona[i] not in "aeiou":
+                salasona.append(sona[i])
+                i -= 2
+            else:
+                salasona.append(sona[i])
+            i -= 1
+        salasona.reverse()
+        salasona = "".join(salasona)
+        print(salasona)
+    else:
+        print("vale sisend")
+
+salakeel()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+input()
+
+
+
+
+
+
+"""
 9. Emaili kontroll
 	kasutaja lisab emaili kujul enimi.pnimi@server.com - 1p
 	programm kontrollib kas email on sisestatud Ćµigesti - vĆ¤hemalt @-mĆ¤rgi kontroll - 1p
@@ -19,14 +265,15 @@ def email():
     if "@" in email:
         #tükeldab emaili
         email=email.split("@")
+        #tükeldab emaili teise osa
+        domain=email[1].split(".")
         #väljastab lause
-        print(f"tere {email[0]}, sinu email on serveris {email[1]} ja domeeniks on sul {email[2]}")
+        print(f"tere {email[0]}, sinu email on serveris {domain[0]} ja domeeniks on sul {domain[1]}")
     else:
         #kui email on vale siis väljastab veateate
         print("vale email")
 #käivitab funktsiooni
 email()
-
 
 input()
 
