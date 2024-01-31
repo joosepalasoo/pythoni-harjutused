@@ -14,12 +14,12 @@ def email_kontroll():
     email=input("sisesta email: ")
     if "@" in email:
         email=email.split("@")
-        first_name=email[0].split(".")[0]
+        eesnimi=email[0].split(".")[0]
         domain=email[1].split(".")
-        print(f"tere {first_name}, sinu email on serveris {domain[0]} ja domeeniks on sul {domain[1]}")
+        print(f"tere {eesnimi}, sinu email on serveris {domain[0]} ja domeeniks on sul {domain[1]}")
     else:
         print("vale email")
-email_kontroll() 
+email_kontroll()
 
 input()
 
@@ -194,38 +194,28 @@ kasutaja sisestab salakeeles sõna, mis teisendatakse jälle normaalseks - 1p
 kood kommenteeritud - 1p
 """
 
-def salakeel():
-    valik = input("kas soovid luua või tõlkida? ")
-    if valik == "luua":
-        sona = input("sisesta sõna: ")
-        sona = list(sona)
-        salasona = []
-        for i in sona:
-            if i not in "aeiou":
-                salasona.append(i + "o" + i)
-            else:
-                salasona.append(i)
-        salasona = "".join(salasona)
-        print(salasona)
-    elif valik == "tõlkida":
-        sona = input("sisesta sõna: ")
-        sona = list(sona)
-        salasona = []
-        i = len(sona) - 1
-        while i >= 0:
-            if sona[i] not in "aeiou":
-                salasona.append(sona[i])
-                i -= 2
-            else:
-                salasona.append(sona[i])
-            i -= 1
-        salasona.reverse()
-        salasona = "".join(salasona)
-        print(salasona)
-    else:
-        print("vale sisend")
+def salakeel(text, shift):
+    result = ""
+    for i in range(len(text)):
+        char = text[i]
+        if (char.isupper()):
+            result += chr((ord(char) + shift - 65) % 26 + 65)
+        else:
+            result += chr((ord(char) + shift - 97) % 26 + 97)
+    return result
 
-salakeel()
+choice = input("vajuta e et teha krüptitud sõna või d et dekrüptida sõna: ")
+word = input("sisesta sõna: ")
+shift = int(input("sisesta tähtede liikumis arv: "))
+
+if choice == 'e':
+    kryptitud_sõna = salakeel(word, shift)
+    print(f"krüptitud sõna: {kryptitud_sõna}")
+elif choice == 'd':
+    dekryptitud_sõna = salakeel(word, -shift)
+    print(f"dekrüptitud sõna: {dekryptitud_sõna}")
+else:
+    print("vale valik lammas!")
 
 
 
@@ -313,15 +303,12 @@ def eurokalkulaator():
         print("3. EXIT")
         #küsib kasutaja valikut
         valik=int(input("vali: "))
-        #kui kasutaja küsib 2 valikut siis:
         if valik==1:
             #küsib kasutajalt summat mida vahetada
             summa=int(input("summa: "))
             #kuvab vahetatud summa kroonides
             print(f"{summa} eurot on {summa*15.6466} krooni")
-            #kui kasutaja küsib 2 valikut siis:
         elif valik==2:
-            #küsib kasutajalt summat mida vahetada
             summa=int(input("summa: "))
             #kuvab vahetatud summa eurodes
             print(f"{summa} krooni on {summa/15.6466} eurot")
@@ -329,10 +316,10 @@ def eurokalkulaator():
         elif valik==3:
             #lõpetab loopi
             break
-            #kui kasutaja küsib muud valikut siis:
+            #kui kasutaja küsib muud valikut siis mida ei eksisteeri:
         else:
             #kuvatakse veateade
-            print("vale valik")
+            print("vale valik loll lammas")
 #käivitab funktsiooni
 eurokalkulaator()
 
