@@ -336,7 +336,7 @@ Create a program that will keep track of items for a shopping list. The program 
 def shopping():
     shoppinglist=[]
     while True:
-        item=input("lisa toode: ")
+        item=input("lisa toode(kui jätad välja tühjaks siis kuvatakse sisestatud tooted ): ")
         if item=="":
             break
         else:
