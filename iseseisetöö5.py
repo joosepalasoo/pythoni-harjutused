@@ -101,9 +101,9 @@ def Temperatuurid():
         for j in range(len(temp[i])):
             if temp[i][j] > max_temp:
                 max_temp = temp[i][j]
-                max_temp_kuup = f"{j+1}. {kuud[i]}"
+                max_temp_kuup = f"{j+1} {kuud[i]}"
     
-    print(f"kuumim kuupäev on: {max_temp_kuup} ja temperatuur sellel päeval oli {max_temp} kraadi.")
+    print(f"kuumim kuupäev on: {max_temp_kuup} ja temperatuur sellel päeval oli {max_temp} kraadi")
 Temperatuurid()
 
 
