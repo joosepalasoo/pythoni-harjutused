@@ -103,7 +103,7 @@ def Temperatuurid():
                 max_temp = temp[i][j]
                 max_temp_kuup = f"{j+1}. {kuud[i]}"
     
-    print(f"kuumim kuupäev on: {max_temp_kuup} temperatuur sellel päeval oli {max_temp} kraadi.")
+    print(f"kuumim kuupäev on: {max_temp_kuup} ja temperatuur sellel päeval oli {max_temp} kraadi.")
 Temperatuurid()
 
 
