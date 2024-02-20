@@ -1,0 +1,108 @@
+1. TOPP SIKRET ehk Salatoimikute haldamise süsteem
+
+Eesmärk: loo Pythoni ja Tkinteri abil rakendus, mis simuleerib "salatoimikute haldamise süsteemi". Rakendus peab võimaldama kasutajal hallata eriti ohtlike isikute andmeid, sealhulgas inimese nime, isikukoodi, sünniaega, sugu, pikemat infot/teksti ning pilti.
+
+Funktsionaalsus:
+* Andmete kuvamine: Rakendus kuvab olemasolevaid andmeid loetelus, kus kasutaja saab üksikute kirjete peal klikkides vaadata täpsemat teavet.
+* Andmete lisamine: Kasutaja saab lisada uusi isikuid andmebaasi, sisestades vajalikud andmed läbi liidese.
+* Andmete muutmine: Kasutaja saab olemasolevaid andmeid muuta, valides loetelust konkreetse kirje ja tehes vajalikud täiendused või parandused.
+* Andmete kustutamine: Kasutaja saab eemaldada kirjeid andmebaasist.
+* Andmete hoiustamine: Andmeid hoitakse CSV, TXT või muus sobilikus failiformaadis, mis võimaldab lihtsat andmete lisamist, muutmist ja kustutamist.
+
+Nõuded:
+* Rakendus peab olema kasutajasõbralik ja intuitiivne.
+* Andmete salvestamiseks ja lugemiseks tuleb kasutada failisüsteemi (CSV, TXT vms).
+* Rakendus peab võimaldama piltide lisamist ja kuvamist koos isikute andmetega.
+* Kasutajaliides peab olema loodud Tkinteri abil.
+* Failid peavad olema kättesaadavad Githubis
+-------------------------
+
+2. Õpilaste haldamise süsteem
+
+Eesmärk: arendada Pythoni ja Tkinteri abil rakendus, mis võimaldab hallata õpilaste andmeid. Rakendus peab toetama õpilaste nime, isikukoodi, kursuse ja pildi salvestamist. Lisaks genereeritakse igale õpilasele süsteemi lisamisel unikaalne ID.
+
+Funktsionaalsus:
+* Andmete sisestamine: Kasutajad saavad sisestada õpilaste nime, isikukoodi, kursuse ja laadida üles pildi. Peale andmete sisestamist genereerib süsteem automaatselt unikaalse ID iga õpilase jaoks.
+* Andmete kuvamine: Rakendus kuvab nimekirja kõigist süsteemis olevatest õpilastest. Kasutajad saavad otsida õpilasi unikaalse ID alusel, et näha nende täielikku informatsiooni.
+* Andmete salvestamine: Andmeid salvestatakse valitud failiformaadis (näiteks CSV või TXT), mis võimaldab lihtsat ligipääsu ja haldamist.
+* Andmete muutmine ja kustutamine: Kasutajad saavad muuta või kustutada olemasolevaid õpilaste kirjeid, tagades andmete ajakohasuse ja täpsuse.
+
+Nõuded:
+* Kasutajaliides peab olema loodud Tkinteri abil, pakkudes lihtsat ja intuitiivset kasutajakogemust.
+* Rakendus peab tagama andmete järjepidevuse ja usaldusväärsuse, kasutades failipõhist salvestamist (CSV, TXT).
+* Iga õpilase kohta genereeritav unikaalne ID peab olema järjestikune või põhinema kindlal algoritmil, tagamaks selle unikaalsuse.
+* Pildifailid tuleb salvestada viisil, mis võimaldab neid lihtsalt seostada vastava õpilase kirjega, näiteks kasutades unikaalset ID-d failinimes.
+* Failid peavad olema kättesaadavad Githubis
+--------------------------------
+
+3. Lemmikloomade varjupaiga haldamise süsteem
+
+Eesmärk: arendada Pythoni ja Tkinteri abil rakendus, mis simuleerib lemmikloomade varjupaiga haldamise süsteemi. Rakendus võimaldab kasutajal sisestada, vaadata, muuta ja kustutada lemmikloomade andmeid, sealhulgas nime, liiki, vanust, sugu ja pilti. Iga lemmiklooma kohta genereeritakse süsteemi lisamisel unikaalne ID.
+
+Funktsionaalsus:
+* Andmete sisestamine: Kasutajad saavad sisestada lemmikloomade andmeid, sealhulgas nime, liiki (koer, kass jne), vanust, sugu ja laadida üles pildi. Sisestamisel genereerib süsteem iga lemmiklooma jaoks unikaalse ID.
+* Andmete vaatamine: Rakendus kuvab kõigi varjupaigas olevate lemmikloomade nimekirja. Kasutajad saavad otsida lemmikloomi nende unikaalse ID või muude omaduste alusel.
+* Andmete muutmine ja Kustutamine: Kasutajad saavad muuta olemasolevate lemmikloomade andmeid või kustutada neid süsteemist, et peegeldada lemmikloomade varjupaigas toimuvaid muutusi.
+* Andmete salvestamine: Andmed salvestatakse failisüsteemi, kasutades CSV või TXT failivormingut, mis võimaldab hõlpsat andmete haldamist ja taaskasutamist.
+
+Nõuded:
+* Kasutajaliides tuleb luua Tkinteri abil, pakkudes kasutajasõbralikku navigeerimist ja interaktsiooni.
+* Rakendus peab tagama andmete järjepidevuse ja turvalisuse, kasutades failipõhist salvestusviisi.
+* Unikaalse ID genereerimine peab tagama, et iga lemmiklooma identifikaator on ainulaadne.
+* Lemmikloomade piltide haldamine peab olema integreeritud süsteemi, võimaldades piltide lihtsat lisamist ja kuvamist koos muu teabega.
+* Failid peavad olema kättesaadavad Githubis
+-----------------------------
+
+4. Konverentsi registreerimissüsteem
+
+Eesmärk: arendada Pythoni ja Tkinteri abil rakendus, mis haldab konverentsi osalejate registreerimist. Rakendus võimaldab kasutajal sisestada, vaadata, muuta ja kustutada osalejate andmeid, sealhulgas nime, asutust, kontaktandmeid (e-posti ja telefoninumbrit) ning esitluse pealkirja. Iga osaleja kohta genereeritakse süsteemi lisamisel unikaalne registreerimis-ID.
+
+Funktsionaalsus:
+* Andmete sisestamine: Kasutajad saavad sisestada osalejate andmeid, sealhulgas nime, asutust, kontaktandmeid ja esitluse pealkirja. Sisestamisel genereerib süsteem iga osaleja jaoks unikaalse registreerimis-ID.
+* Andmete vaatamine: Rakendus kuvab nimekirja kõigist registreeritud osalejatest. Kasutajad saavad otsida osalejaid nende unikaalse registreerimis-ID või muude andmete alusel.
+* Andmete muutmine ja kustutamine: Kasutajad saavad muuta olemasolevate osalejate andmeid või kustutada neid süsteemist, et hoida registreerimisinfo ajakohane.
+* Andmete salvestamine: Andmed salvestatakse failisüsteemi, kasutades CSV või TXT failivormingut, mis võimaldab hõlpsat andmete haldamist ja taaskasutamist.
+
+Nõuded:
+* Kasutajaliides peab olema loodud Tkinteri abil, pakkudes lihtsat ja intuitiivset kasutajakogemust.
+* Rakendus peab tagama andmete järjepidevuse ja turvalisuse, kasutades failipõhist salvestusviisi.
+* Unikaalse registreerimis-ID genereerimine peab tagama, et iga osaleja ID on ainulaadne.
+* Rakendus peab võimaldama osalejate andmete lihtsat sisestamist, muutmist, vaatamist ja kustutamist.
+* Failid peavad olema kättesaadavad Githubis
+-------------------
+
+5. Raamatukogu laenutussüsteemi arendamine
+
+Eesmärk: Luua Pythoni ja Tkinteri abil rakendus, mis haldab raamatukogu laenutustegevust. Rakendus võimaldab kasutajatel sisestada, vaadata, muuta ja kustutada teavet laenutatud raamatute ja lugejate kohta. Iga laenutuse kohta genereeritakse süsteemi lisamisel unikaalne laenutus-ID.
+
+Funktsionaalsus:
+* Raamatute ja lugejate andmete sisestamine: Kasutajad saavad sisestada raamatute (pealkiri, autor, väljaandeaasta) ja lugejate (nimi, kontaktandmed) andmeid. Iga uue laenutuse puhul genereerib süsteem unikaalse laenutus-ID.
+* Laenutuste vaatamine: Rakendus kuvab kõik aktiivsed laenutused, sealhulgas raamatu pealkirja, autori, lugeja nime ja laenutusperioodi. Kasutajad saavad otsida laenutusi laenutus-ID, lugeja nime või raamatu pealkirja alusel.
+* Laenutuste muutmine ja kustutamine: Kasutajad saavad pikendada laenutusperioode, muuta lugeja kontaktandmeid või kustutada laenutusi süsteemist.
+* Andmete salvestamine: Andmed salvestatakse failisüsteemi, kasutades CSV või TXT failivormingut, mis võimaldab hõlpsat andmete haldamist ja taaskasutamist.
+
+Nõuded:
+* Kasutajaliides tuleb luua Tkinteri abil, et pakkuda kasutajasõbralikku ja intuitiivset navigeerimist.
+* Rakendus peab tagama andmete järjepidevuse ja turvalisuse, kasutades failipõhist salvestusviisi.
+* Unikaalse laenutus-ID genereerimine peab tagama, et iga laenutus on selgelt identifitseeritav.
+* Rakendus peab võimaldama raamatute ja lugejate andmete lihtsat sisestamist, muutmist ja kustutamist, samuti laenutusprotsessi haldamist.
+* Failid peavad olema kättesaadavad Githubis
+------------------------------
+
+6. Teenusepõhise arveldussüsteem
+
+Eesmärk: arendada Pythoni ja Tkinteri abil rakendus, mis võimaldab klienditeenindajatel koostada, vaadata, muuta ja kustutada arveid etteantud teenuste alusel. Rakendus peab hõlbustama teenuste haldamist, sealhulgas teenuste lisamist, muutmist ja kustutamist, ning arvete genereerimist nende teenuste eest.
+
+Funktsionaalsus:
+* Teenuste haldamine: Kasutajad saavad lisada uusi teenuseid (näiteks nõustamine, hooldus, koolitus), määrates iga teenuse kirjelduse ja hinna. Samuti saab olemasolevaid teenuseid muuta ja kustutada.
+* Arvete koostamine: Klienditeenindajad saavad koostada arveid, valides teenused, mida klient on kasutanud. Iga arve koostamisel lisatakse teenuste hinnad kokku ja kuvatakse kogusumma.
+* Arvete vaatamine ja muutmine: Rakendus võimaldab vaadata kõiki koostatud arveid ja vajadusel teha nendes muudatusi, näiteks teenuste lisamisel või eemaldamisel arvelt.
+* Arvete ja teenuste salvestamine: Andmed salvestatakse failisüsteemi, kasutades CSV või TXT failivormingut, mis võimaldab lihtsat andmete haldamist ja taaskasutamist.
+
+Nõuded:
+* Kasutajaliides tuleb luua Tkinteri abil, et tagada kasutajasõbralik ja intuitiivne navigeerimine.
+* Rakendus peab tagama andmete järjepidevuse ja turvalisuse, kasutades failipõhist salvestusviisi.
+* Rakendus peab võimaldama teenuste ja arvete andmete lihtsat sisestamist, muutmist ja kustutamist.
+* Teenuste hinnastamise ja arvete koostamise loogika peab olema selge ja jälgitav, tagamaks arvete täpsuse ja usaldusväärsuse.
+* Failid peavad olema kättesaadavad Githubis
+--------------------------
