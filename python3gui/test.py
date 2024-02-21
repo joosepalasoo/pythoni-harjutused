@@ -1,6 +1,9 @@
 import csv
 import tkinter as tk
 from tkinter import filedialog, messagebox
+import base64
+import io
+from PIL import Image, ImageTk
 
 class SecretAgentSystem:
     def __init__(self, root):
@@ -45,7 +48,7 @@ class SecretAgentSystem:
         add_image_button.grid(row=3, column=0, padx=5, pady=5)
         
         self.search_var = tk.StringVar()  # Variable to track changes in search entry
-        self.search_var.trace("w", self.search_person_realtime)  # Trace changes in search entry
+        self.search_var.trace("w", self.search_person)  # Trace changes in search entry
         search_entry = tk.Entry(button_frame, textvariable=self.search_var)
         search_entry.grid(row=4, column=0, padx=5, pady=5)
 
@@ -55,11 +58,8 @@ class SecretAgentSystem:
         if self.listbox.curselection():
             index = int(self.listbox.curselection()[0])
             person = self.data[index]
-            self.current_index = index
-            for key, value in person.items():
-                if key != 'image':
-                    self.entries[key].delete(0, tk.END)
-                    self.entries[key].insert(0, value)
+            self.current_index = index  # Update current index
+            self.show_person_info(person)
             if 'image' in person:
                 self.show_image(person['image'])
             else:
@@ -95,25 +95,31 @@ class SecretAgentSystem:
         if self.current_index is not None:
             file_path = filedialog.askopenfilename(filetypes=[("Image files", "*.jpg *.jpeg *.png *.gif")])
             if file_path:
-                self.data[self.current_index]['image'] = file_path
-                self.save_data()
-                self.show_image(file_path)
+                with open(file_path, "rb") as image_file:
+                    encoded_string = base64.b64encode(image_file.read()).decode('utf-8')
+                    self.data[self.current_index]['image'] = encoded_string
+                    self.save_data()
+                    self.show_image(encoded_string)
+        else:
+            messagebox.showerror("Viga", "Palun valige isik enne pildi lisamist.")
 
-    def search_person_realtime(self, *args):
+    def search_person(self, *args):
         search_query = self.search_var.get().lower()
         self.listbox.delete(0, tk.END)
-        found_person = None
-        for index, person in enumerate(self.data):
-            if search_query in person['nimi'].lower():
-                self.listbox.insert(tk.END, person['nimi'])
-                self.listbox.itemconfig(index, foreground='blue')  # Highlight the search results
-                found_person = person
-        if found_person:
-            for key, entry in self.entries.items():
-                entry.delete(0, tk.END)
-                entry.insert(0, found_person.get(key, ''))
+        if search_query:
+            found = False
+            for person in self.data:
+                if search_query in person['nimi'].lower():
+                    self.data.insert(0, self.data.pop(self.data.index(person)))  # Move found person to first position
+                    self.show_person_info(person)
+                    self.listbox.insert(0, person['nimi'])
+                    self.listbox.itemconfig(0, foreground='black')  # Reset the text color
+                    found = True
+            if not found:
+                self.clear_person_info()
         else:
-            print("Isikut ei leitud.")
+            for person in self.data:
+                self.listbox.insert(tk.END, person['nimi'])
 
     def load_data(self):
         try:
@@ -122,9 +128,8 @@ class SecretAgentSystem:
                 self.data = list(reader)
         except FileNotFoundError:
             self.data = []
-        self.listbox.delete(0, tk.END)
-        for person in self.data:
-            self.listbox.insert(tk.END, person['nimi'])
+        self.search_person()  # Load data into listbox when starting
+        self.current_index = None  # Reset current index
 
     def save_data(self):
         with open('salatoimikud.csv', 'w', newline='', encoding='utf-8') as file:
@@ -133,10 +138,25 @@ class SecretAgentSystem:
             writer.writeheader()
             writer.writerows(self.data)
 
-    def show_image(self, image_path):
-        image = tk.PhotoImage(file=image_path)
-        self.image_label.config(image=image)
-        self.image_label.image = image
+    def show_image(self, image_data):
+        if image_data:
+            decoded_image = base64.b64decode(image_data)
+            image = Image.open(io.BytesIO(decoded_image))
+            photo_image = ImageTk.PhotoImage(image)
+            self.image_label.config(image=photo_image)
+            self.image_label.image = photo_image
+        else:
+            self.image_label.config(image='')
+
+    def show_person_info(self, person):
+        for key, value in person.items():
+            if key != 'image':
+                self.entries[key].delete(0, tk.END)
+                self.entries[key].insert(0, value)
+
+    def clear_person_info(self):
+        for entry in self.entries.values():
+            entry.delete(0, tk.END)
 
 def main():
     root = tk.Tk()
