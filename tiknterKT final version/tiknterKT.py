@@ -61,19 +61,20 @@ class SecretAgentSystem:
         button_frame = tk.Frame(root)
         button_frame.pack(side=tk.RIGHT, padx=10, pady=10)
 
-        add_button = tk.Button(button_frame, text="Lisa", command=self.add_person)
+        add_button = tk.Button(button_frame, text="Lisa uus agent", command=self.add_person)
         add_button.grid(row=0, column=0, padx=5, pady=5)
-        update_button = tk.Button(button_frame, text="Uuenda", command=self.update_person)
+        update_button = tk.Button(button_frame, text="Uuenda agenti", command=self.update_person)
         update_button.grid(row=1, column=0, padx=5, pady=5)
-        delete_button = tk.Button(button_frame, text="Kustuta", command=self.delete_person)
+        delete_button = tk.Button(button_frame, text="Kustuta agent", command=self.delete_person)
         delete_button.grid(row=2, column=0, padx=5, pady=5)
-        add_image_button = tk.Button(button_frame, text="Lisa Pilt", command=self.add_image)
+        add_image_button = tk.Button(button_frame, text="Lisa pilt", command=self.add_image)
         add_image_button.grid(row=3, column=0, padx=5, pady=5)
         
         self.search_var = tk.StringVar()  # Variable to track changes in search entry
         self.search_var.trace("w", self.search_person)  # Trace changes in search entry
         search_entry = tk.Entry(button_frame, textvariable=self.search_var)
         search_entry.grid(row=4, column=0, padx=5, pady=5)
+        search_entry.insert(0, "Otsi...")
 
         self.load_data()
 
@@ -107,12 +108,18 @@ class SecretAgentSystem:
                 entry.delete(0, tk.END)
             self.save_data()
             self.load_data()
+        else:
+            messagebox.showerror("Viga", "Palun valige agent enne uuendamist.")
 
     def delete_person(self):
         if self.current_index is not None:
-            del self.data[self.current_index]
-            self.save_data()
-            self.load_data()
+            confirm = messagebox.askyesno("Kinnita kustutamine", "Kas olete kindel, et soovite selle agendi kustutada?")
+            if confirm:
+                del self.data[self.current_index]
+                self.save_data()
+                self.load_data()
+        else:
+            messagebox.showerror("Viga", "Palun valige agent enne kustutamist.")
 
     def add_image(self):
         if self.current_index is not None:
@@ -124,12 +131,12 @@ class SecretAgentSystem:
                     self.save_data()
                     self.show_image(encoded_string)
         else:
-            messagebox.showerror("Viga", "Palun valige isik enne pildi lisamist.")
+            messagebox.showerror("Viga", "Palun valige agent enne pildi lisamist.")
 
     def search_person(self, *args):
         search_query = self.search_var.get().lower()
         self.listbox.delete(0, tk.END)
-        if search_query:
+        if search_query and search_query != "otsi...":
             found = False
             for person in self.data:
                 if search_query in person['nimi'].lower():
