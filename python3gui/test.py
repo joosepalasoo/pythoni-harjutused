@@ -11,6 +11,7 @@ class SecretAgentSystem:
         self.root.title("TOPP SIKRET - Salatoimikute haldamise süsteem")
         self.entries = {}
         self.current_index = None
+        self.data = []
 
         self.listbox = tk.Listbox(root)
         self.listbox.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
@@ -48,10 +49,11 @@ class SecretAgentSystem:
         add_image_button.grid(row=3, column=0, padx=5, pady=5)
         
         self.search_var = tk.StringVar()  # Variable to track changes in search entry
-        self.search_var.trace("w", self.search_person)  # Trace changes in search entry
+        self.search_var.trace_add("write", self.search_person)  # Trace changes in search entry
+        search_label = tk.Label(button_frame, text="Otsi agenti:")  # Change search label
+        search_label.grid(row=4, column=0, padx=5, pady=5, sticky="w")  # Update grid position
         search_entry = tk.Entry(button_frame, textvariable=self.search_var)
-        search_entry.grid(row=4, column=0, padx=5, pady=5)
-        search_entry.insert(0, "Otsi...")
+        search_entry.grid(row=4, column=1, padx=5, pady=5, sticky="e")
 
         self.load_data()
 
@@ -76,6 +78,7 @@ class SecretAgentSystem:
         self.data.append(person)
         self.save_data()
         self.load_data()
+        messagebox.showinfo("Info", "Uus agent on edukalt lisatud.")
 
     def update_person(self):
         if self.current_index is not None:
@@ -85,6 +88,7 @@ class SecretAgentSystem:
                 entry.delete(0, tk.END)
             self.save_data()
             self.load_data()
+            messagebox.showinfo("Info", "Agenti on edukalt uuendatud.")
         else:
             messagebox.showerror("Viga", "Palun valige agent enne uuendamist.")
 
@@ -95,6 +99,7 @@ class SecretAgentSystem:
                 del self.data[self.current_index]
                 self.save_data()
                 self.load_data()
+                messagebox.showinfo("Info", "Agent on edukalt kustutatud.")
         else:
             messagebox.showerror("Viga", "Palun valige agent enne kustutamist.")
 
@@ -124,6 +129,7 @@ class SecretAgentSystem:
                     found = True
             if not found:
                 self.clear_person_info()
+                messagebox.showinfo("Info", "Agenti ei leitud.")
         else:
             for person in self.data:
                 self.listbox.insert(tk.END, person['nimi'])
@@ -149,6 +155,14 @@ class SecretAgentSystem:
         if image_data:
             decoded_image = base64.b64decode(image_data)
             image = Image.open(io.BytesIO(decoded_image))
+
+            # Resize the image if it's too large
+            max_width = 300
+            max_height = 300
+            width, height = image.size
+            if width > max_width or height > max_height:
+                image.thumbnail((max_width, max_height))
+
             photo_image = ImageTk.PhotoImage(image)
             self.image_label.config(image=photo_image)
             self.image_label.image = photo_image
